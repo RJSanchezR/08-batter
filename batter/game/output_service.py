@@ -35,6 +35,10 @@ class OutputService:
         """ 
         raylibpy.begin_drawing()
         raylibpy.clear_background(raylibpy.BLACK)
+    
+    def remove_everything():
+
+        raylibpy.clear_background(raylibpy.BLUE)
 
     def draw_box(self, x, y, width, height):
         """
@@ -90,7 +94,7 @@ class OutputService:
         
     def draw_actors(self, actors):
         """Renders the given list of actors on the screen.
-
+        
         Args:
             self (OutputService): An instance of OutputService.
             actors (list): The actors to render.

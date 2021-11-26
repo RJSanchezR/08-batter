@@ -1,5 +1,7 @@
+from os import remove
 from time import sleep
 from game.audio_service import AudioService
+from game.output_service import OutputService
 import raylibpy
 from game import constants
 
@@ -38,13 +40,16 @@ class Director:
                 # Game over
                 audio_service = AudioService()
                 audio_service.play_sound(constants.SOUND_OVER)
-                self._keep_playing = False
+                # self._keep_playing = False
             
             if len(self._cast["lives"]) == 0:
                 # Game over
                 audio_service = AudioService()
+                output_service = OutputService()
                 audio_service.play_sound(constants.SOUND_OVER)
-                self._keep_playing = False
+                # self._keep_playing = False
+                
+                output_service.remove_everything()
 
             if raylibpy.window_should_close():
                 self._keep_playing = False
