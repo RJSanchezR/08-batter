@@ -1,7 +1,4 @@
-from os import remove
 from time import sleep
-from game.audio_service import AudioService
-from game.output_service import OutputService
 import raylibpy
 from game import constants
 
@@ -28,28 +25,26 @@ class Director:
         self._script = script
         self._keep_playing = True
         
-    def start_game(self):
+    def start_game(self, cast):
         """Starts the game loop to control the sequence of play."""
         while self._keep_playing:
             self._cue_action("input")
             self._cue_action("update")
             self._cue_action("output")
 
-            # TODO: Add some logic like the following to handle game over conditions
-            if len(self._cast["bricks"]) == 0:
-                # Game over
-                audio_service = AudioService()
-                audio_service.play_sound(constants.SOUND_OVER)
-                # self._keep_playing = False
-            
-            if len(self._cast["lives"]) == 0:
-                # Game over
-                audio_service = AudioService()
-                output_service = OutputService()
-                audio_service.play_sound(constants.SOUND_OVER)
-                # self._keep_playing = False
+            game_over = cast["game_over"][0]
+            paddle = cast["paddle"][0]
+            ball = cast["balls"][0]
+            bricks = cast["bricks"]
+
+            if len(self._cast["bricks"]) == 0 or len(self._cast["lives"]) == 0:
                 
-                output_service.remove_everything()
+                # Game over            
+                for brick in bricks:
+                    cast["bricks"].remove(brick)
+                game_over.set_image(constants.IMAGE_GAME_OVER)
+                paddle.set_image(" ")
+                ball.set_image(" ")
 
             if raylibpy.window_should_close():
                 self._keep_playing = False

@@ -11,6 +11,7 @@ DEFAULT_TEXT_OFFSET = 4
 IMAGE_BRICK = os.path.join(os.getcwd(), "./batter/assets/brick-2.png")
 IMAGE_PADDLE = os.path.join(os.getcwd(), "./batter/assets/bat.png")
 IMAGE_BALL = os.path.join(os.getcwd(), "./batter/assets/ball.png")
+IMAGE_GAME_OVER = os.path.join(os.getcwd(), "./batter/assets/game_over.png")
 
 SOUND_START = os.path.join(os.getcwd(), "./batter/assets/start.wav")
 SOUND_BOUNCE = os.path.join(os.getcwd(), "./batter/assets/boing.wav")
@@ -38,3 +39,5 @@ PADDLE_HEIGHT = 24
 BALL_WIDTH = 24
 BALL_HEIGHT = 24
 
+GAME_OVER_WIDTH = 236
+GAME_OVER_HEIGHT = 236
